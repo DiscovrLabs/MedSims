@@ -2,40 +2,43 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent (typeof(Text))]
 public class TextController : MonoBehaviour
 {
-	public Text textBox;
+	protected Text textBox;
 
-	string fullSentence;
+	public string fullSentence;
+	public float typingDelay = 0.03f;
 	string currentString;
-
-	protected string item1 = null;
-	protected string item2 = null;
-	protected int strCount = 0;
 
 	void Start()
 	{
+		textBox = GetComponent<Text>();
 		textBox.text = "";
-		StartCoroutine(NeutralCursor());
 	}
-	
-	/*
+
 	void Update()
 	{
+		if(Input.GetKeyDown(KeyCode.F))
+		{
+			StartTyping();
+		}
+
+		if(Input.GetKeyDown(KeyCode.G))
+		{
+			SetString("This is Test 1");
+		}
+
+		if (Input.GetKeyDown(KeyCode.H))
+		{
+			SetString("This isn't Test 3");
+		}
+
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			SetString("THIS SKELETON IS TOO HIGH POLY█", true);
-		}
-		if (Input.GetKeyDown(KeyCode.LeftShift))
-		{
-			SetString("THIS SKELETON IS dicks HIGH POLY█", true);
-		}
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			SetString("THIS SKELETON IS TOO HIGH POLY█", false);
+			SkipTyping();
 		}
 	}
-	*/
 
 	IEnumerator TypeText()
 	{
@@ -43,7 +46,7 @@ public class TextController : MonoBehaviour
 		{
 			currentString = currentString + fullSentence[strIndex];
 			textBox.text = currentString;
-			yield return new WaitForSeconds(0.03f);
+			yield return new WaitForSeconds(typingDelay);
 		}
 		currentString = currentString + "   ";
 		StartCoroutine(BlinkingCursor());
@@ -73,93 +76,29 @@ public class TextController : MonoBehaviour
 		}
 	}
 
-	IEnumerator NeutralCursor()
-	{
-		bool cursorOn = true;
-		while (true)
-		{
-			if (cursorOn)
-			{
-				textBox.text = "";
-				cursorOn = false;
-				yield return new WaitForSeconds(0.5f);
-			}
-			else
-			{
-				textBox.text = "█";
-				cursorOn = true;
-				yield return new WaitForSeconds(0.5f);
-			}
-		}
-	}
-
-	public void SetString(string infoText, bool bAdd)
+	public void SetString(string infoText, float delay = 0.03f)
 	{
 		textBox.text = "";
 		currentString = "";
 		StopAllCoroutines();
-		if (bAdd)
-		{
-			if (strCount == 0)
-			{
-				item1 = infoText;
-				fullSentence = item1;
-				StartCoroutine(TypeText());
-			}
-			else
-			{
-				if (item1 == null)
-				{
-					item1 = infoText;
-				}
-				else
-				{
-					item2 = infoText;
-				}
-				StartCoroutine(NeutralCursor());
-			}
-			strCount++;
-		}
-		else
-		{
-			if (item1 == infoText)
-			{
-				item1 = null;
-			}
-			else
-			{
-				item2 = null;
-			}
 
-			if (strCount == 2)
-			{
-				if (item1 == null)
-				{
-					fullSentence = item2;
-					StartCoroutine(TypeText());
-				}
-				else
-				{
-					fullSentence = item1;
-					StartCoroutine(TypeText());
-				}
-			}
-			else
-			{
-				StartCoroutine(NeutralCursor());
-			}
-			strCount--;
-		}
+		fullSentence = infoText;
+		StartCoroutine(TypeText());
 	}
 
-	public void Reset()
+	public void StartTyping()
 	{
 		textBox.text = "";
 		currentString = "";
 		StopAllCoroutines();
-		item1 = null;
-		item2 = null;
-		strCount = 0;
-		StartCoroutine(NeutralCursor());
+		StartCoroutine(TypeText());
+	}
+
+	public void SkipTyping()
+	{
+		textBox.text = "";
+		currentString = fullSentence + "   ";
+		StopAllCoroutines();
+		StartCoroutine(BlinkingCursor());
 	}
 }
