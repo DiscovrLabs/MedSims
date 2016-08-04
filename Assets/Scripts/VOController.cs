@@ -29,6 +29,7 @@ public class VOController : MonoBehaviour
 		if (!SoundPlayer.isPlaying)
 		{
 			SoundPlayer.Play();
+			Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
 			Subtitles.gameObject.SetActive(true);
 			Subtitles.StartTyping();
 		}
@@ -44,6 +45,7 @@ public class VOController : MonoBehaviour
 			{
 				//Skip VO
 				SoundPlayer.Stop();
+				CancelInvoke();
 				EndVO();
 			}
 		}

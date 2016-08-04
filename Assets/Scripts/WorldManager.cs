@@ -10,8 +10,10 @@ public class WorldManager : MonoBehaviour
 	
 	[Header ("Player Data")]
 	public GameObject Player;
+	public VRStandardAssets.Utils.VRCameraFade FadeScript;
 
 	protected int SceneState = 0;
+	private bool bFadeComplete;
 
 	// Use this for initialization
 	void Awake()
@@ -24,6 +26,7 @@ public class WorldManager : MonoBehaviour
 
 	void Start()
 	{
+		FadeScript.OnFadeComplete += _FadeCompleted;
 		Scenes[0].ActivateScene();
 		//trigger fade in and default position
 	}
@@ -49,5 +52,10 @@ public class WorldManager : MonoBehaviour
 		{
 			//Death Condition
 		}
+	}
+
+	private void _FadeCompleted()
+	{
+		bFadeComplete = true;
 	}
 }
