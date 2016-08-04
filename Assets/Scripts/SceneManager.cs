@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneManager : MonoBehaviour {
+public class SceneManager : MonoBehaviour
+{
+	[HideInInspector]
+	public WorldManager Manager;
 
 	public virtual void ActivateScene()
 	{
@@ -9,6 +12,11 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	public virtual void DeactivateScene()
+	{
+
+	}
+
+	public virtual void EndVO(VOController controller)
 	{
 
 	}

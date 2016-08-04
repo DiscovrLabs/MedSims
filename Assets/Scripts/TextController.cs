@@ -11,7 +11,7 @@ public class TextController : MonoBehaviour
 	public float typingDelay = 0.03f;
 	string currentString;
 
-	void Start()
+	void Awake()
 	{
 		textBox = GetComponent<Text>();
 		textBox.text = "";

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WorldManager : MonoBehaviour {
-
+public class WorldManager : MonoBehaviour
+{
 	[Header("World Data")]
 	public SceneManager[] Scenes;
 	public Vector3[] ScenePositions;
@@ -14,7 +14,15 @@ public class WorldManager : MonoBehaviour {
 	protected int SceneState = 0;
 
 	// Use this for initialization
-	void Start ()
+	void Awake()
+	{
+		for (int i = 0; i < Scenes.Length; i++)
+		{
+			Scenes[i].Manager = this;
+		}
+	}
+
+	void Start()
 	{
 		Scenes[0].ActivateScene();
 		//trigger fade in and default position
