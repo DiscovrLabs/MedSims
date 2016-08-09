@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: aa0343d21d9916842ac90c32779461f9
+timeCreated: 1470785864
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Door4
+    100002: Door5
+    100004: Door6
+    100006: Doors2
+    100008: ERDOORS
+    100010: Hallway10
+    100012: Hallway11
+    100014: Hallway12
+    100016: Hallway13
+    100018: Hallway5
+    100020: Hallway8
+    100022: Hallway9
+    100024: LeftDoor
+    100026: Lights
+    100028: Pillar
+    100030: Pillar1
+    100032: Pillar5
+    100034: Pillar6
+    100036: RightDoor
+    100038: //RootNode
+    400000: Door4
+    400002: Door5
+    400004: Door6
+    400006: Doors2
+    400008: ERDOORS
+    400010: Hallway10
+    400012: Hallway11
+    400014: Hallway12
+    400016: Hallway13
+    400018: Hallway5
+    400020: Hallway8
+    400022: Hallway9
+    400024: LeftDoor
+    400026: Lights
+    400028: Pillar
+    400030: Pillar1
+    400032: Pillar5
+    400034: Pillar6
+    400036: RightDoor
+    400038: //RootNode
+    2300000: Door4
+    2300002: Door5
+    2300004: Door6
+    2300006: Doors2
+    2300008: Hallway10
+    2300010: Hallway11
+    2300012: Hallway12
+    2300014: Hallway13
+    2300016: Hallway5
+    2300018: Hallway8
+    2300020: Hallway9
+    2300022: LeftDoor
+    2300024: Lights
+    2300026: Pillar
+    2300028: Pillar1
+    2300030: Pillar5
+    2300032: Pillar6
+    2300034: RightDoor
+    3300000: Door4
+    3300002: Door5
+    3300004: Door6
+    3300006: Doors2
+    3300008: Hallway10
+    3300010: Hallway11
+    3300012: Hallway12
+    3300014: Hallway13
+    3300016: Hallway5
+    3300018: Hallway8
+    3300020: Hallway9
+    3300022: LeftDoor
+    3300024: Lights
+    3300026: Pillar
+    3300028: Pillar1
+    3300030: Pillar5
+    3300032: Pillar6
+    3300034: RightDoor
+    4300000: Pillar1
+    4300002: Pillar
+    4300004: RightDoor
+    4300006: LeftDoor
+    4300008: Hallway5
+    4300010: Hallway10
+    4300012: Hallway11
+    4300014: Door4
+    4300016: Hallway8
+    4300018: Hallway9
+    4300020: Doors2
+    4300022: Pillar5
+    4300024: Hallway12
+    4300026: Door5
+    4300028: Pillar6
+    4300030: Hallway13
+    4300032: Door6
+    4300034: Lights
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
