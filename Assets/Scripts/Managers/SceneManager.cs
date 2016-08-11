@@ -20,4 +20,9 @@ public class SceneManager : MonoBehaviour
 	{
 
 	}
+
+	public virtual void Proceed()
+	{
+
+	}
 }

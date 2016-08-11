@@ -9,35 +9,15 @@ public class TextController : MonoBehaviour
 
 	public string fullSentence;
 	public float typingDelay = 0.03f;
+
+	[HideInInspector]
+	public bool bFinishedTyping = false;
 	string currentString;
 
 	void Awake()
 	{
 		textBox = GetComponent<Text>();
 		textBox.text = "";
-	}
-
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.F))
-		{
-			StartTyping();
-		}
-
-		if(Input.GetKeyDown(KeyCode.G))
-		{
-			SetString("This is Test 1");
-		}
-
-		if (Input.GetKeyDown(KeyCode.H))
-		{
-			SetString("This isn't Test 3");
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			SkipTyping();
-		}
 	}
 
 	IEnumerator TypeText()
@@ -49,6 +29,7 @@ public class TextController : MonoBehaviour
 			yield return new WaitForSeconds(typingDelay);
 		}
 		currentString = currentString + "   ";
+		bFinishedTyping = true;
 		StartCoroutine(BlinkingCursor());
 	}
 
@@ -80,6 +61,7 @@ public class TextController : MonoBehaviour
 	{
 		textBox.text = "";
 		currentString = "";
+		bFinishedTyping = false;
 		StopAllCoroutines();
 
 		fullSentence = infoText;
@@ -90,6 +72,7 @@ public class TextController : MonoBehaviour
 	{
 		textBox.text = "";
 		currentString = "";
+		bFinishedTyping = false;
 		StopAllCoroutines();
 		StartCoroutine(TypeText());
 	}
@@ -98,6 +81,7 @@ public class TextController : MonoBehaviour
 	{
 		textBox.text = "";
 		currentString = fullSentence + "   ";
+		bFinishedTyping = true;
 		StopAllCoroutines();
 		StartCoroutine(BlinkingCursor());
 	}

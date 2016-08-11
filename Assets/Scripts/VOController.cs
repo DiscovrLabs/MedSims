@@ -5,12 +5,12 @@ using System.Collections;
 public class VOController : MonoBehaviour
 {
 	public TextController Subtitles;
+	public GameObject Background;
 
 	[HideInInspector]
 	public SceneManager Manager;
 
 	AudioSource SoundPlayer;
-	bool bTextSkipped;
 
 	void Awake()
 	{
@@ -20,6 +20,7 @@ public class VOController : MonoBehaviour
 	void Start ()
 	{
 		Subtitles.gameObject.SetActive(false);
+		Background.SetActive(false);
 	}
 	
 	//Function for handling varying clicks
@@ -28,18 +29,14 @@ public class VOController : MonoBehaviour
 		//Start audio and text
 		if (!SoundPlayer.isPlaying)
 		{
-			SoundPlayer.Play();
-			Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
-			Subtitles.gameObject.SetActive(true);
-			Subtitles.StartTyping();
+			PlayVO();
 		}
 		else
 		{
-			if (!bTextSkipped)
+			if (!Subtitles.bFinishedTyping)
 			{
 				//Skip text scrolling
 				Subtitles.SkipTyping();
-				bTextSkipped = true;
 			}
 			else
 			{
@@ -49,6 +46,15 @@ public class VOController : MonoBehaviour
 				EndVO();
 			}
 		}
+	}
+
+	public void PlayVO()
+	{
+		SoundPlayer.Play();
+		Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
+		Subtitles.gameObject.SetActive(true);
+		Background.SetActive(true);
+		Subtitles.StartTyping();
 	}
 
 	void EndVO ()
