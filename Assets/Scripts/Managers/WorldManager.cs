@@ -29,6 +29,8 @@ public class WorldManager : MonoBehaviour
 	{
 		FadeScript.OnFadeComplete += _FadeCompleted;
 		//trigger fade in and default position
+		Player.transform.position = ScenePositions[SceneState];
+		Player.transform.rotation = Quaternion.Euler(SceneRotations[SceneState]);
 	}
 
 	void Update()
