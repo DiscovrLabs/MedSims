@@ -100,8 +100,8 @@ ModelImporter:
     4300032: Door6
     4300034: Lights
   materials:
-    importMaterials: 0
-    materialName: 0
+    importMaterials: 1
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
