@@ -6,11 +6,13 @@ public class VOController : MonoBehaviour
 {
 	public TextController Subtitles;
 	public GameObject Background;
+	public bool bDisableWhenFinished = true;
 
 	[HideInInspector]
 	public SceneManager Manager;
 
 	AudioSource SoundPlayer;
+	private bool bFinished = false;
 
 	void Awake()
 	{
@@ -26,24 +28,27 @@ public class VOController : MonoBehaviour
 	//Function for handling varying clicks
 	public void OnClick()
 	{
-		//Start audio and text
-		if (!SoundPlayer.isPlaying)
+		if (!bFinished)
 		{
-			PlayVO();
-		}
-		else
-		{
-			if (!Subtitles.bFinishedTyping)
+			//Start audio and text
+			if (!SoundPlayer.isPlaying)
 			{
-				//Skip text scrolling
-				Subtitles.SkipTyping();
+				PlayVO();
 			}
 			else
 			{
-				//Skip VO
-				SoundPlayer.Stop();
-				CancelInvoke();
-				EndVO();
+				if (!Subtitles.bFinishedTyping)
+				{
+					//Skip text scrolling
+					Subtitles.SkipTyping();
+				}
+				else
+				{
+					//Skip VO
+					SoundPlayer.Stop();
+					CancelInvoke();
+					EndVO();
+				}
 			}
 		}
 	}
@@ -59,7 +64,11 @@ public class VOController : MonoBehaviour
 
 	void EndVO ()
 	{
+		bFinished = true;
 		Manager.EndVO(this);
-		this.gameObject.SetActive(false);
+		if (bDisableWhenFinished)
+		{
+			this.gameObject.SetActive(false);
+		}
 	}
 }

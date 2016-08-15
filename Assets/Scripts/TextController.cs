@@ -20,6 +20,11 @@ public class TextController : MonoBehaviour
 		textBox.text = "";
 	}
 
+	void Start()
+	{
+		fullSentence = fullSentence.Replace("NEWLINE", "\n");
+	}
+
 	IEnumerator TypeText()
 	{
 		for (int strIndex = 0; strIndex < fullSentence.Length; strIndex++)
