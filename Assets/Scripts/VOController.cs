@@ -11,8 +11,8 @@ public class VOController : MonoBehaviour
 	[HideInInspector]
 	public SceneManager Manager;
 
-	AudioSource SoundPlayer;
-	private bool bFinished = false;
+	protected AudioSource SoundPlayer;
+	protected bool bFinished = false;
 
 	void Awake()
 	{
@@ -53,7 +53,7 @@ public class VOController : MonoBehaviour
 		}
 	}
 
-	public void PlayVO()
+	public virtual void PlayVO()
 	{
 		SoundPlayer.Play();
 		Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
@@ -62,7 +62,7 @@ public class VOController : MonoBehaviour
 		Subtitles.StartTyping();
 	}
 
-	void EndVO ()
+	protected virtual void EndVO ()
 	{
 		bFinished = true;
 		Manager.EndVO(this);
@@ -70,5 +70,10 @@ public class VOController : MonoBehaviour
 		{
 			this.gameObject.SetActive(false);
 		}
+	}
+
+	public bool GetPlaying()
+	{
+		return SoundPlayer.isPlaying;
 	}
 }

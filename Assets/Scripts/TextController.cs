@@ -70,6 +70,7 @@ public class TextController : MonoBehaviour
 		StopAllCoroutines();
 
 		fullSentence = infoText;
+		fullSentence = fullSentence.Replace("NEWLINE", "\n");
 		StartCoroutine(TypeText());
 	}
 

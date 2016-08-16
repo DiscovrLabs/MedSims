@@ -19,8 +19,7 @@ public class Scene1Manager : SceneManager
 
 	public override void DeactivateScene()
 	{
-		Destroy(IntroVO.gameObject);
-		Destroy(ProceedButton);
+		Destroy(Scene1);
 	}
 
 	public override void EndVO(VOController controller)

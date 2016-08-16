@@ -24,6 +24,7 @@ public class Scene2Manager : SceneManager
 
 	public override void ActivateScene()
 	{
+		Scene2.SetActive(true);
 		AnesthIcon.SetActive(true);
 		GameState++;
 	}
@@ -53,6 +54,11 @@ public class Scene2Manager : SceneManager
 	{
 		ProceedButton.SetActive(false);
 		Manager.AdvanceState();
+		AudioSource temp = GetComponent<AudioSource>();
+		if (temp.isPlaying)
+		{
+			temp.Stop();
+		}
 	}
 
 	public void ClickActor(bool bSurgeon)
