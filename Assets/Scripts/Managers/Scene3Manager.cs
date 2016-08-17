@@ -7,9 +7,6 @@ public class Scene3Manager : SceneManager
 	public GameObject SurgIcon;
 	public VOController SurgVO;
 	public HoverableMenu SurgMenu;
-
-	[Header("World")]
-	public GameObject Scene3;
 	
 	bool bSurgeonActive = false;
 
@@ -20,12 +17,7 @@ public class Scene3Manager : SceneManager
 
 	public override void ActivateScene()
 	{
-		Scene3.SetActive(true);
 		Invoke("ChangeMonitor", 3.0f);
-	}
-
-	public override void DeactivateScene()
-	{
 	}
 
 	public override void EndVO(VOController controller)

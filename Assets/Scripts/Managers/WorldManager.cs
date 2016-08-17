@@ -13,7 +13,6 @@ public class WorldManager : MonoBehaviour
 	public VRStandardAssets.Utils.VRCameraFade FadeScript;
 
 	protected int SceneState = 0;
-	private bool bFadeComplete = false;
 	private bool bFadeOut = false;
 
 	// Use this for initialization
@@ -31,23 +30,6 @@ public class WorldManager : MonoBehaviour
 		//trigger fade in and default position
 		Player.transform.position = ScenePositions[SceneState];
 		Player.transform.rotation = Quaternion.Euler(SceneRotations[SceneState]);
-	}
-
-	void Update()
-	{
-		if (bFadeComplete)
-		{
-			bFadeComplete = false;
-
-			if (bFadeOut)
-			{
-				FadeIn();
-			}
-			else
-			{
-				TriggerScene();
-			}
-		}
 	}
 
 	//Advance to next Scene
@@ -74,6 +56,7 @@ public class WorldManager : MonoBehaviour
 		{
 			Scenes[SceneState - 1].DeactivateScene();
 		}
+		Scenes[SceneState].EnableScene();
 		Player.transform.position = ScenePositions[SceneState];
 		Player.transform.rotation = Quaternion.Euler(SceneRotations[SceneState]);
 		FadeScript.FadeIn(false);
@@ -98,6 +81,13 @@ public class WorldManager : MonoBehaviour
 
 	private void _FadeCompleted()
 	{
-		bFadeComplete = true;
+		if (bFadeOut)
+		{
+			FadeIn();
+		}
+		else
+		{
+			TriggerScene();
+		}
 	}
 }

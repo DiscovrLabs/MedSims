@@ -5,7 +5,6 @@ public class Scene1Manager : SceneManager
 {
 	public VOController IntroVO;
 	public GameObject ProceedButton;
-	public GameObject Scene1;
 
 	void Awake()
 	{
@@ -15,11 +14,6 @@ public class Scene1Manager : SceneManager
 	public override void ActivateScene()
 	{
 		IntroVO.PlayVO();
-	}
-
-	public override void DeactivateScene()
-	{
-		Destroy(Scene1);
 	}
 
 	public override void EndVO(VOController controller)

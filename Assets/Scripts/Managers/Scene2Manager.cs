@@ -3,16 +3,14 @@ using System.Collections;
 
 public class Scene2Manager : SceneManager
 {
+	public GameObject ProceedButton;
+	public HoverLight[] HighlightObj;
+
 	[Header("VO")]
 	public VOController AnesthVO;
 	public VOController SurgVO;
 	public GameObject AnesthIcon;
 	public GameObject SurgIcon;
-
-	[Header("World")]
-	public GameObject Scene2;
-	public GameObject ProceedButton;
-	public GameObject[] HighlightObj;
 
 	protected int GameState = 0;
 
@@ -24,14 +22,8 @@ public class Scene2Manager : SceneManager
 
 	public override void ActivateScene()
 	{
-		Scene2.SetActive(true);
 		AnesthIcon.SetActive(true);
 		GameState++;
-	}
-
-	public override void DeactivateScene()
-	{
-		Destroy(Scene2);
 	}
 
 	public override void EndVO(VOController controller)
@@ -46,6 +38,10 @@ public class Scene2Manager : SceneManager
 		{
 			//Enable Highlighting and proceed button
 			GetComponent<AudioSource>().Play();
+			for (int i = 0; i < HighlightObj.Length; i++)
+			{
+				HighlightObj[i].SetHoverable(true);
+			}
 			ProceedButton.SetActive(true);
 		}
 	}
