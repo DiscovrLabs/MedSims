@@ -6,11 +6,25 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Lights
+    100004: Moniter1
+    100006: SurgeonLights1
     400000: //RootNode
+    400002: Lights
+    400004: Moniter1
+    400006: SurgeonLights1
     2300000: //RootNode
+    2300002: Lights
+    2300004: Moniter1
+    2300006: SurgeonLights1
     3300000: //RootNode
+    3300002: Lights
+    3300004: Moniter1
+    3300006: SurgeonLights1
     4300000: SurgeonLights
     4300002: SurgeonLights1
+    4300004: Lights
+    4300006: Moniter1
     9500000: //RootNode
   materials:
     importMaterials: 1

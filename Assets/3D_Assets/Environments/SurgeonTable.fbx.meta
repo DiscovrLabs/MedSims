@@ -6,10 +6,20 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: SURGEONTABLE_Cloth
+    100004: SURGEONTABLE_Metal
     400000: //RootNode
+    400002: SURGEONTABLE_Cloth
+    400004: SURGEONTABLE_Metal
     2300000: //RootNode
+    2300002: SURGEONTABLE_Cloth
+    2300004: SURGEONTABLE_Metal
     3300000: //RootNode
+    3300002: SURGEONTABLE_Cloth
+    3300004: SURGEONTABLE_Metal
     4300000: SURGEONTABLE
+    4300002: SURGEONTABLE_Metal
+    4300004: SURGEONTABLE_Cloth
     9500000: //RootNode
   materials:
     importMaterials: 1
