@@ -6,6 +6,7 @@ public class VOController : MonoBehaviour
 {
 	public TextController Subtitles;
 	public GameObject Background;
+	public Animator Character;
 	public bool bDisableWhenFinished = true;
 
 	[HideInInspector]
@@ -55,6 +56,10 @@ public class VOController : MonoBehaviour
 
 	public virtual void PlayVO()
 	{
+		if(Character)
+		{
+			Character.SetBool("isTalking", true);
+		}
 		SoundPlayer.Play();
 		Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
 		Subtitles.gameObject.SetActive(true);
@@ -64,6 +69,10 @@ public class VOController : MonoBehaviour
 
 	protected virtual void EndVO ()
 	{
+		if (Character)
+		{
+			Character.SetBool("isTalking", false);
+		}
 		bFinished = true;
 		Manager.EndVO(this);
 		if (bDisableWhenFinished)

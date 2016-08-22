@@ -13,6 +13,7 @@ public class Scene2Manager : SceneManager
 	public GameObject SurgIcon;
 
 	protected int GameState = 0;
+	bool bCanProceed = true;
 
 	void Awake()
 	{
@@ -47,6 +48,15 @@ public class Scene2Manager : SceneManager
 	}
 
 	public override void Proceed()
+	{
+		if (bCanProceed)
+		{
+			Invoke("Advance", 0.2f);
+			bCanProceed = false;
+		}
+	}
+
+	void Advance()
 	{
 		ProceedButton.SetActive(false);
 		Manager.AdvanceState();

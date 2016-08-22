@@ -6,6 +6,8 @@ public class Scene1Manager : SceneManager
 	public VOController IntroVO;
 	public GameObject ProceedButton;
 
+	bool bCanProceed = true;
+
 	void Awake()
 	{
 		IntroVO.Manager = this;
@@ -25,6 +27,15 @@ public class Scene1Manager : SceneManager
 	}
 
 	public override void Proceed()
+	{
+		if (bCanProceed)
+		{
+			Invoke("Advance", 0.2f);
+			bCanProceed = false;
+		}
+	}
+
+	void Advance()
 	{
 		ProceedButton.SetActive(false);
 		Manager.AdvanceState();

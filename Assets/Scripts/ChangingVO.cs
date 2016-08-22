@@ -16,6 +16,10 @@ public class ChangingVO : VOController
 		}
 		else
 		{
+			if (Character)
+			{
+				Character.SetBool("isTalking", false);
+			}
 			SoundPlayer.clip = ExtraVO[CurrentLine - 1];
 			SoundPlayer.Play();
 			Invoke("EndVO", SoundPlayer.clip.length + 1.5f);
@@ -26,6 +30,10 @@ public class ChangingVO : VOController
 	}
 	protected override void EndVO()
 	{
+		if (Character)
+		{
+			Character.SetBool("isTalking", false);
+		}
 		Subtitles.gameObject.SetActive(false);
 		Background.SetActive(false);
 		CurrentLine++;
