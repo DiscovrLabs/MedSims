@@ -18,7 +18,7 @@ public class ChangingVO : VOController
 		{
 			if (Character)
 			{
-				Character.SetBool("isTalking", false);
+				Character.SetBool("isTalking", true);
 			}
 			SoundPlayer.clip = ExtraVO[CurrentLine - 1];
 			SoundPlayer.Play();
