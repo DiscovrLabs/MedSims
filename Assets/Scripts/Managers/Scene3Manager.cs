@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Scene3Manager : SceneManager
 {
+	public GameObject Scene3a;
+	public GameObject Scene3b;
 	[Header("VO")]
 	public GameObject SurgIcon;
 	public VOController SurgVO;
@@ -13,6 +15,19 @@ public class Scene3Manager : SceneManager
 	void Awake()
 	{
 		SurgVO.Manager = this;
+	}
+
+	public override void EnableScene()
+	{
+		Scene.SetActive(true);
+		Scene3a.SetActive(true);
+	}
+
+	public override void DeactivateScene()
+	{
+		Destroy(Scene);
+		Destroy(Scene3a);
+		Destroy(Scene3b);
 	}
 
 	public override void ActivateScene()

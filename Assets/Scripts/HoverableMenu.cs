@@ -34,6 +34,11 @@ public class HoverableMenu : MonoBehaviour
 
 	void DisableMenu()
 	{
+		TieredMenu temp = MenuChild.GetComponent<TieredMenu>();
+		if (temp != null)
+		{
+			temp.ResetMenu();
+		}
 		MenuChild.SetActive(false);
 	}
 

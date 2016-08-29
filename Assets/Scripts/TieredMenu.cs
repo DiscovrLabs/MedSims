@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class TieredMenu : MonoBehaviour
 {
+	public HoverableMenu HoverController;
+	public Text MenuTitle;
+	public GameObject TitleImage;
+	public GameObject BackButton;
+
+	[Space]
 	public GameObject ButtonBP;
 	public ButtonTierData[] ButtonData;
 	
@@ -10,11 +17,9 @@ public class TieredMenu : MonoBehaviour
 	int PrevTier = 0;
 	int CurrentTier = 99;
 	bool bEndTier = false;
-
-	// Use this for initialization
+	
 	void Start ()
 	{
-		//Spawn the first set of buttons
 		SpawnButtons(0);
 	}
 
@@ -22,12 +27,10 @@ public class TieredMenu : MonoBehaviour
 	{
 		if (bEndTier)
 		{
-			//Handle the differing clicks
 			HandleClick(ID);
 		}
 		else
 		{
-			DestroyButtons();
 			SpawnButtons(ID);
 		}
 	}
@@ -36,6 +39,7 @@ public class TieredMenu : MonoBehaviour
 	{
 		if (CurrentTier != TargetID)
 		{
+			DestroyButtons();
 			CurrentTier = TargetID;
 			ButtonTierData TargetData = ButtonData[TargetID];
 			PrevTier = TargetData.PreviousID;
@@ -47,9 +51,23 @@ public class TieredMenu : MonoBehaviour
 				GameObject temp = Instantiate(ButtonBP, transform.position, transform.rotation) as GameObject;
 				temp.transform.SetParent(transform);
 				temp.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-				temp.GetComponent<RectTransform>().anchoredPosition = Vector2.up * (i * 16);
+				temp.GetComponent<RectTransform>().anchoredPosition = Vector2.up * ((TargetData.ButtonStrings.Length / 2 - (i + 1)) * 16);
 				temp.GetComponent<TieredButton>().SetupButton(this, TargetData.ButtonIDs[i], TargetData.ButtonStrings[i]);
 				ButtonList.Add(temp);
+			}
+
+			MenuTitle.text = TargetData.TitleString;
+			Vector2 TitlePos = Vector2.up * ((TargetData.ButtonStrings.Length / 2) * 16);
+			TitleImage.GetComponent<RectTransform>().anchoredPosition = TitlePos;
+			BackButton.GetComponent<RectTransform>().anchoredPosition = TitlePos + (Vector2.right * -50);
+
+			if (TargetID == 0)
+			{
+				BackButton.SetActive(false);
+			}
+			else
+			{
+				BackButton.SetActive(true);
 			}
 		}
 	}
@@ -69,9 +87,25 @@ public class TieredMenu : MonoBehaviour
 		SpawnButtons(0);
 	}
 
-	public void BackButton()
+	public void BackButtonClick()
 	{
 		SpawnButtons(PrevTier);	
+	}
+
+	public void GazeStart()
+	{
+		if (HoverController)
+		{
+			HoverController.GazeStart();
+		}
+	}
+
+	public void GazeStop()
+	{
+		if (HoverController)
+		{
+			HoverController.GazeStop();
+		}
 	}
 
 	protected virtual void HandleClick(int ID)
@@ -83,8 +117,10 @@ public class TieredMenu : MonoBehaviour
 [System.Serializable]
 public class ButtonTierData
 {
+	public string TitleString;
 	public string[] ButtonStrings;
 	public int[] ButtonIDs;
+	[Space]
 	public int PreviousID;
 	public bool bEndTier;
 }
