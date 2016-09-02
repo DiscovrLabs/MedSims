@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e833a6c79c48cd243b9742589455fe64
-timeCreated: 1470785539
+timeCreated: 1472841508
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -82,6 +82,7 @@ ModelImporter:
     100148: mixamorig:Spine2
     100150: Shoes
     100152: Tops
+    100154: default1
     400000: Body
     400002: Bottoms
     400004: default
@@ -159,6 +160,7 @@ ModelImporter:
     400148: mixamorig:Spine2
     400150: Shoes
     400152: Tops
+    400154: default1
     4300000: Eyelashes
     4300002: default
     4300004: Body
@@ -168,7 +170,9 @@ ModelImporter:
     4300012: Shoes
     4300014: Bottoms
     4300016: Tops
+    4300018: default1
     7400000: mixamo.com
+    7400002: Take 001
     9500000: //RootNode
     13700000: Body
     13700002: Bottoms
@@ -179,6 +183,7 @@ ModelImporter:
     13700012: Hats
     13700014: Shoes
     13700016: Tops
+    13700018: default1
   materials:
     importMaterials: 1
     materialName: 0
