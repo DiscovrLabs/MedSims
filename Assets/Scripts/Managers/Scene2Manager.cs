@@ -53,6 +53,10 @@ public class Scene2Manager : SceneManager
 		{
 			Invoke("Advance", 0.2f);
 			bCanProceed = false;
+			for (int i = 0; i < HighlightObj.Length; i++)
+			{
+				HighlightObj[i].SetHoverable(false);
+			}
 		}
 	}
 

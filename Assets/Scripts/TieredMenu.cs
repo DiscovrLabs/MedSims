@@ -12,6 +12,9 @@ public class TieredMenu : MonoBehaviour
 	[Space]
 	public GameObject ButtonBP;
 	public ButtonTierData[] ButtonData;
+
+	[HideInInspector]
+	public Scene3Manager Manager;
 	
 	List<GameObject> ButtonList = new List<GameObject>();
 	int PrevTier = 0;
@@ -23,10 +26,11 @@ public class TieredMenu : MonoBehaviour
 		SpawnButtons(0);
 	}
 
-	public void ReceiveClick(int ID)
+	public void ReceiveClick(int ID, int Index)
 	{
 		if (bEndTier)
 		{
+			ButtonData[CurrentTier].bButtonEnabled[Index] = false;
 			HandleClick(ID);
 		}
 		else
@@ -40,9 +44,9 @@ public class TieredMenu : MonoBehaviour
 		if (CurrentTier != TargetID)
 		{
 			DestroyButtons();
-			CurrentTier = TargetID;
 			ButtonTierData TargetData = ButtonData[TargetID];
-			PrevTier = TargetData.PreviousID;
+			PrevTier = CurrentTier;
+			CurrentTier = TargetID;
 			bEndTier = TargetData.bEndTier;
 
 			for (int i = 0; i < TargetData.ButtonStrings.Length; i++)
@@ -52,7 +56,7 @@ public class TieredMenu : MonoBehaviour
 				temp.transform.SetParent(transform);
 				temp.transform.localScale = new Vector3(0.5f, 0.5f, 1);
 				temp.GetComponent<RectTransform>().anchoredPosition = Vector2.up * ((TargetData.ButtonStrings.Length / 2 - (i + 1)) * 16);
-				temp.GetComponent<TieredButton>().SetupButton(this, TargetData.ButtonIDs[i], TargetData.ButtonStrings[i]);
+				temp.GetComponent<TieredButton>().SetupButton(this, TargetData.ButtonIDs[i], TargetData.ButtonStrings[i], TargetData.bButtonEnabled[i], i);
 				ButtonList.Add(temp);
 			}
 
@@ -110,7 +114,21 @@ public class TieredMenu : MonoBehaviour
 
 	protected virtual void HandleClick(int ID)
 	{
-
+		if (Manager)
+		{
+			switch (ID)
+			{
+				case 1:
+					Manager.ChooseOption(false);
+					break;
+				case 2:
+					Manager.ChooseOption(true);
+					break;
+				default:
+					break;
+			}
+		}
+		ResetMenu();
 	}
 }
 
@@ -120,7 +138,7 @@ public class ButtonTierData
 	public string TitleString;
 	public string[] ButtonStrings;
 	public int[] ButtonIDs;
+	public bool[] bButtonEnabled;
 	[Space]
-	public int PreviousID;
 	public bool bEndTier;
 }

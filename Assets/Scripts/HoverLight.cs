@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-[RequireComponent (typeof(Light))]
 public class HoverLight : MonoBehaviour
 {
-	Light ComponentLight;
+	List<Material> ChildMaterials = new List<Material>();
+	List<Color> ChildColors = new List<Color>();
 	bool bHoverable = false;
 	bool bDisabling = false;
 
 	void Start()
 	{
-		ComponentLight = GetComponent<Light>();
-		ComponentLight.enabled = false;
+		Renderer[] temp = GetComponentsInChildren<Renderer>();
+		for (int i = 0; i < temp.Length; i++)
+		{
+			ChildMaterials.AddRange(temp[i].materials);
+		}
+		for (int i = 0; i < ChildMaterials.Count; i++)
+		{
+			ChildColors.Add(ChildMaterials[i].color);
+		}
 	}
 
 	public void GazeStart()
@@ -23,7 +30,7 @@ public class HoverLight : MonoBehaviour
 				bDisabling = false;
 				CancelInvoke();
 			}
-			ComponentLight.enabled = true;
+			SetHighlight(true);
 		}
 	}
 
@@ -35,7 +42,7 @@ public class HoverLight : MonoBehaviour
 
 	void DisableLight()
 	{
-		ComponentLight.enabled = false;
+		SetHighlight(false);
 	}
 
 	public void SetHoverable(bool Enable)
@@ -44,6 +51,14 @@ public class HoverLight : MonoBehaviour
 		if (!Enable)
 		{
 			DisableLight();
+		}
+	}
+
+	void SetHighlight(bool bEnable)
+	{
+		for (int i = 0; i < ChildMaterials.Count; i++)
+		{
+			ChildMaterials[i].color = (bEnable) ? Color.yellow : ChildColors[i];
 		}
 	}
 }

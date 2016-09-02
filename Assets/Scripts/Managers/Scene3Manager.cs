@@ -5,11 +5,15 @@ public class Scene3Manager : SceneManager
 {
 	public GameObject Scene3a;
 	public GameObject Scene3b;
-	[Header("VO")]
+	[Header("Scene 3A")]
 	public GameObject SurgIcon;
 	public VOController SurgVO;
-	public HoverableMenu SurgMenu;
-	
+	public HoverableMenu[] MenusA;
+
+	[Header("Scene 3B")]
+	public HoverableMenu[] MenusB;
+
+	int CorrectActions = 0;
 	bool bSurgeonActive = false;
 
 	void Awake()
@@ -20,7 +24,6 @@ public class Scene3Manager : SceneManager
 	public override void EnableScene()
 	{
 		Scene.SetActive(true);
-		Scene3a.SetActive(true);
 	}
 
 	public override void DeactivateScene()
@@ -47,11 +50,31 @@ public class Scene3Manager : SceneManager
 	{
 	}
 
+	public void ChooseOption(bool bShouldDie)
+	{
+		if(bShouldDie)
+		{
+			Manager.SetWinState(false);
+		}
+		else
+		{
+			CorrectActions++;
+			if (CorrectActions >= 7)
+			{
+				Manager.SetWinState(true);
+			}
+		}
+	}
+
 	void ChangeMonitor()
 	{
 		//Change monitor state and tone
+		Scene3a.SetActive(true);
 		SurgIcon.SetActive(true);
-		SurgMenu.SetHoverable(true);
+		for (int i = 0; i < MenusA.Length; i++)
+		{
+			MenusA[i].SetHoverable(true);
+		}
 	}
 
 	public void ClickSurgeon(bool Button)
@@ -59,7 +82,7 @@ public class Scene3Manager : SceneManager
 		if (Button)
 		{
 			SurgIcon.SetActive(false);
-			SurgMenu.SetHoverable(false);
+			MenusA[0].SetHoverable(false);
 			SurgVO.PlayVO();
 			bSurgeonActive = true;
 		}
